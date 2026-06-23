@@ -176,10 +176,6 @@ python train_pretrain.py
 # 多卡训练：torchrun --nproc_per_node N train_pretrain.py
 ```
 
-<!-- screenshot: pretrain_loss -->
-<!-- 截图文件名：images/pretrain_loss.png -->
-<!-- 截图说明：预训练阶段的 loss 曲线图 -->
-
 > 训练后得到 `out/pretrain_*.pth` 权重文件
 
 #### Step 2：监督微调（必须）
@@ -288,7 +284,7 @@ cd scripts && python serve_openai_api.py
 # 测试接口
 curl http://localhost:8998/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -d '{"model": "tinymind", "messages": [{"role": "user", "content": "你好"}]}'
+  -d '{"model": "minimind", "messages": [{"role": "user", "content": "你好"}]}'
 ```
 
 ### 第三方框架
@@ -298,7 +294,7 @@ curl http://localhost:8998/v1/chat/completions \
 ollama run jingyaogong/minimind-3
 
 # vllm
-vllm serve /path/to/model --served-model-name "tinymind"
+vllm serve /path/to/model --served-model-name "minimind"
 
 # llama.cpp（需先转换格式）
 python convert_hf_to_gguf.py /path/to/model
