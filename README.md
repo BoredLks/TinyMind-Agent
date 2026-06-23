@@ -93,8 +93,8 @@ TinyMind 是一个完全从零开始训练超小语言模型（~64M 参数）的
 ### 1. 获取代码
 
 ```bash
-git clone https://github.com/<你的用户名>/TinyMind.git
-cd TinyMind
+git clone https://github.com/BoredLks/TinyMind-Agent.git
+cd TinyMind-Agent
 ```
 
 或直接下载 ZIP 源码并解压。
