@@ -1,82 +1,62 @@
 <div align="center">
 
-# 🧠 TinyMind
+# SuperAgent
 
-**从零训练一个超小语言模型，只需 3 块钱、2 小时**
+**一款运行于 Windows 的桌面 AI 编码/开发助手**
 
-![Python](https://img.shields.io/badge/python-3.10+-blue)
-![PyTorch](https://img.shields.io/badge/pytorch-2.0+-ee4c2c)
-![License](https://img.shields.io/badge/license-Apache%202.0-green)
+内置技能系统与工程方法论，拥有自己的运行引擎（FastAPI + OpenAI-compatible Agent Loop）、前端界面（React + Tailwind CSS）与原生桌面外壳（pywebview）。
 
-*"大道至简"——用最简洁的代码，从零训练一个能对话的语言模型*
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10+-green.svg)](https://www.python.org/)
+[![Node.js 18+](https://img.shields.io/badge/Node.js-18+-yellow.svg)](https://nodejs.org/)
+[![GitHub last commit](https://img.shields.io/github/last-commit/BoredLks/SuperAgent)](https://github.com/BoredLks/SuperAgent)
+[![GitHub stars](https://img.shields.io/github/stars/BoredLks/SuperAgent?style=social)](https://github.com/BoredLks/SuperAgent)
+
+![superagent-home](docs/screenshots/hero.png)
 
 </div>
 
 ---
 
-## 📌 项目简介
+## ✨ 功能特性
 
-TinyMind 是一个完全从零开始训练超小语言模型（~64M 参数）的开源项目。
+| 特性 | 说明 |
+|---|---|
+| 🖥️ **原生桌面窗口** | pywebview 原生窗口，不弹出浏览器标签页 |
+| 🤖 **多 LLM Provider** | 支持任意 OpenAI 兼容 API，可配置备用 Provider 自动 Fallback |
+| 📂 **项目沙箱** | 选中项目后，AI 的文件读写和命令执行限制在该项目目录内 |
+| 🛠️ **工具系统** | 内置文件读写、命令执行、文档处理等工具，支持外部插件扩展 |
+| 🧠 **技能系统** | 技能按需加载（渐进式披露），内置 16 个工程方法论技能 |
+| 🔄 **子代理派发** | 独立上下文的子代理执行任务，支持两阶段审查（规范符合 + 代码质量） |
+| 💾 **会话管理** | 多会话、SQLite 持久化、撤回最近一轮对话 |
+| 🔑 **长期记忆** | 回合结束后异步整理记忆，跨会话保持上下文 |
+| 📝 **工具文档懒加载** | 复杂工具可先按需读取说明，节省上下文 Token |
+| 🔒 **安全机制** | 密钥存储在本地 Keyring，不在日志中暴露 |
+| 🎨 **Markdown 渲染** | GFM + Prism 代码高亮 + 代码块复制 |
+| 🌐 **HTML 沙箱** | HTML 代码在 sandboxed iframe 中安全预览 |
 
-项目覆盖了从 Tokenizer 训练、预训练（Pretrain）、监督微调（SFT）、LoRA、强化学习（DPO / PPO / GRPO / CISPO）、Agent RL 到知识蒸馏的**全流程代码**，所有核心算法均使用 PyTorch 原生实现，不依赖第三方高层抽象接口。
+## 📸 截图预览
 
-此外，项目还包含一个基于 LangGraph 的 **Plan-and-Execute 多智能体系统**，展示了如何将小型 LLM 作为 Agent 大脑来执行多步骤任务。
+<div align="center">
 
-> **目标**：让每个人都能从理解每一行代码开始，亲手训练一个语言模型。
+<!-- 请将截图放入 docs/screenshots/ 目录 -->
 
----
+![主界面](docs/screenshots/main-ui.png)
 
-## ✨ 核心特性
+![工具调用可视化](docs/screenshots/tool-calling.png)
 
-<table>
-<tr>
-<td width="50%">
+![技能面板](docs/screenshots/skills-panel.png)
 
-### 🏗️ 模型训练
+![设置中心](docs/screenshots/settings.png)
 
-- Transformer Decoder-Only 结构，对齐 Qwen3 生态
-- 完整训练链路：Pretrain → SFT → LoRA → DPO → PPO → GRPO → CISPO → Agent RL
-- 所有核心算法纯 PyTorch 原生实现
-- 支持单机单卡 / 多卡（DDP / DeepSpeed）
-- 支持 wandb / swanlab 训练可视化
-- 支持断点续训
+</div>
 
-</td>
-<td width="50%">
-
-### 🤖 Agent 多智能体
-
-- 基于 LangGraph 的 Plan-and-Execute 架构
-- 三个专家 Agent：文件操作 / 代码生成 / 故事编写
-- 支持 local / server / mock 三种 LLM 后端
-- Streamlit 可视化 WebUI
-- 自动生成 workspace 产物
-
-</td>
-</tr>
-<tr>
-<td>
-
-### 🛠️ 工具调用 & 思考
-
-- 原生 Tool Calling 能力（已混入 SFT 数据）
-- 自适应思考（`<think>` 标签 + `open_thinking` 开关）
-- 兼容 OpenAI API 协议
-- 支持 `reasoning_content` / `tool_calls`
-
-</td>
-<td>
-
-### 🔌 多框架兼容
-
-- transformers / llama.cpp / vllm / ollama
-- Streamlit WebUI 聊天界面
-- OpenAI 兼容 API 服务端
-- 模型格式互转（torch ↔ transformers）
-
-</td>
-</tr>
-</table>
+> 📌 请截图并保存到 `docs/screenshots/` 目录，文件名对应上方引用：
+> - `hero.png` — 主页标题区域的大图（建议 1280×720）
+> - `main-ui.png` — 完整聊天界面截图（含侧边栏 + 对话 + 输入区）
+> - `tool-calling.png` — 工具调用过程的可视化展示
+> - `skills-panel.png` — 技能面板展示
+> - `settings.png` — 设置中心（Provider 配置页）
 
 ---
 
@@ -85,343 +65,295 @@ TinyMind 是一个完全从零开始训练超小语言模型（~64M 参数）的
 ### 前置要求
 
 | 依赖 | 版本 | 说明 |
-|------|------|------|
-| Python | 3.10+ | 推荐 3.10 |
-| PyTorch | 2.0+ | 建议 CUDA 11.8+ |
-| GPU | NVIDIA 3090 (24GB) 推荐 | CPU 也可运行但较慢 |
+|---|---|---|
+| Windows | 10 / 11 | 操作系统 |
+| Python | 3.10+ | 后端运行环境 |
+| Node.js | 18+ | 前端构建 |
+| Edge WebView2 Runtime | — | pywebview 桌面窗口依赖 |
 
 ### 1. 获取代码
 
-```bash
-git clone https://github.com/BoredLks/TinyMind-Agent.git
-cd TinyMind-Agent
+```powershell
+git clone https://github.com/BoredLks/SuperAgent.git
+cd SuperAgent
 ```
 
-或直接下载 ZIP 源码并解压。
+### 2. 安装后端依赖
 
-### 2. 安装依赖
-
-```bash
-pip install -r requirements.txt
+```powershell
+py -3.10 -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-### 3. 下载模型
+复制环境变量模板并填入你的 API Key：
 
-```bash
-# 方式 1：从 ModelScope 下载
-modelscope download --model gongjy/minimind-3 --local_dir ./minimind-3
-
-# 方式 2：从 HuggingFace 下载
-git clone https://huggingface.co/jingyaogong/minimind-3
+```powershell
+Copy-Item backend\.env.example backend\.env
+# 编辑 backend\.env，填入 OPENAI_API_KEY
 ```
 
-### 4. 开始对话
+### 3. 安装前端依赖
 
-```bash
-# 使用 Transformers 格式模型（推荐）
-python eval_llm.py --load_from ./minimind-3
-
-# 使用 PyTorch 权重（需先训练或下载 .pth 文件放入 ./out/ 目录）
-python eval_llm.py --load_from ./model --weight full_sft
+```powershell
+npm install --prefix frontend
 ```
 
-> **注意**：`./out/` 目录是训练产物输出目录，不包含在仓库中。运行训练脚本后会自动创建，或从 ModelScope 下载 `.pth` 权重文件放入 `./out/` 目录。
+### 4. 启动
 
-![CLI Demo](./images/cli_demo.png)
-> 终端运行 eval_llm.py 后的多轮对话截图
+**方式 A：从源码运行（开发态）**
 
-### 5. 启动 WebUI（可选）
+```powershell
+# 终端 1：启动后端
+.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir backend --reload
 
-```bash
-# 将模型文件夹复制到 scripts 目录下
-cp -r minimind-3 ./scripts/minimind-3
-cd scripts && streamlit run web_demo.py
+# 终端 2：启动前端
+npm --prefix frontend run dev
 ```
 
-![WebUI Demo](./images/webui_demo.png)
-> Streamlit WebUI 聊天界面截图
+前端开发服务默认在 `http://127.0.0.1:5173`。
+
+**方式 B：构建桌面应用**
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\build\build.ps1
+.\dist\SuperAgent\SuperAgent.exe
+```
+
+应用会自动选择可用本地端口启动 FastAPI 后端，并用 pywebview 原生窗口加载同源前端页面。
+
+### 5. 首次使用
+
+1. 启动后，在左侧「项目」区域点击「添加项目」，输入你希望 AI 工作的项目目录
+2. 选中项目后，AI 的 `write_file`、`read_file`、`list_dir` 与 `run_command` 都会以该目录为工作区
+3. 在底部输入框发送消息，开始与 AI 对话
 
 ---
 
-## 🛠️ 模型训练
-
-### 数据准备
-
-从 [ModelScope](https://www.modelscope.cn/datasets/gongjy/minimind_dataset/files) 或 [HuggingFace](https://huggingface.co/datasets/jingyaogong/minimind_dataset/tree/main) 下载数据集，放入 `./dataset/` 目录。
-
-> 无需全部下载，可单独下载所需文件。最小只需 `pretrain_t2t_mini.jsonl` + `sft_t2t_mini.jsonl` 即可快速复现。
-
-| 文件 | 大小 | 说明 | 推荐 |
-|------|------|------|------|
-| `pretrain_t2t_mini.jsonl` | 1.2GB | 轻量预训练数据 | ✨ 快速复现 |
-| `sft_t2t_mini.jsonl` | 1.6GB | 轻量 SFT 数据（含 Tool Call） | ✨ 快速训练 |
-| `pretrain_t2t.jsonl` | 10GB | 完整预训练数据 | 完整训练 |
-| `sft_t2t.jsonl` | 14GB | 完整 SFT 数据 | 完整训练 |
-| `rlaif.jsonl` | 24MB | RLAIF 训练数据 | ✨ 强化学习 |
-| `dpo.jsonl` | 53MB | DPO 偏好数据 | 可选 |
-| `agent_rl.jsonl` | 86MB | Agentic RL 数据 | 可选 |
-| `agent_rl_math.jsonl` | 18MB | Agent 数学补充数据 | 可选 |
-
-### 训练流程
-
-> 所有训练脚本均在 `./trainer` 目录下执行
-
-#### Step 1：预训练（必须）
-
-```bash
-cd trainer
-python train_pretrain.py
-# 多卡训练：torchrun --nproc_per_node N train_pretrain.py
-```
-
-> 训练后得到 `out/pretrain_*.pth` 权重文件
-
-#### Step 2：监督微调（必须）
-
-```bash
-python train_full_sft.py
-```
-
-> 训练后得到 `out/full_sft_*.pth` 权重文件
-
-#### Step 3：强化学习（可选）
-
-```bash
-# DPO 偏好对齐
-python train_dpo.py
-
-# PPO 强化学习
-python train_ppo.py
-
-# GRPO / CISPO 强化学习
-python train_grpo.py
-
-# Agentic RL（多轮 Tool-Use）
-python train_agent.py
-```
-
-#### Step 4：其他训练（可选）
-
-```bash
-# LoRA 微调（CPU 也能跑）
-python train_lora.py
-
-# 知识蒸馏
-python train_distillation.py
-```
-
-> 所有训练脚本均支持 `--from_resume 1` 断点续训和 `--use_wandb` 训练可视化。
-
-### 训练开销
-
-| 模型 | 参数量 | Pretrain | SFT | RLAIF |
-|------|--------|----------|-----|-------|
-| TinyMind-Dense | 64M | ≈1.2h / ¥1.6 | ≈1.1h / ¥1.4 | ≈1.1h / ¥1.4 |
-| TinyMind-MoE | 198M | ≈1.7h / ¥2.2 | ≈1.5h / ¥2.0 | ≈1.5h / ¥2.0 |
-
-> 基于单卡 NVIDIA 3090 的经验估算。从零训练约 2 小时、3 块钱即可完成。
-
----
-
-## 🤖 Agent 多智能体系统
-
-项目附带一个基于 LangGraph 的 Plan-and-Execute 多智能体系统，将 TinyMind 作为 LLM 大脑，实现"先规划、再执行、可重试"的多步骤任务处理。
-
-![Agent Architecture](./images/agent_architecture.png)
-> Agent 工作流架构图
-
-### 架构
+## 🏗️ 架构概览
 
 ```
-用户任务 → [planner 规划] → [专家执行循环] → [replan 复核] → [final 汇总]
-                           ├── file_agent（移动文件）
-                           ├── code_agent（编写代码）
-                           └── story_agent（编写故事）
+┌─────────────────────────────────────────────────────┐
+│                   Desktop Shell                      │
+│                  (pywebview + PyInstaller)            │
+├──────────────────────┬──────────────────────────────┤
+│      Frontend        │         Backend              │
+│  React + TypeScript  │     FastAPI + Python          │
+│  Zustand + Tailwind  │                               │
+│  Vite + Vitest       │  ┌─────────┐ ┌────────────┐  │
+│                      │  │  Agent  │ │   Tools    │  │
+│  ┌────────────────┐  │  │  Loop   │ │  Registry  │  │
+│  │   Components   │  │  │ (LLM)  │ │ (Built-in) │  │
+│  │  ChatView      │  │  └─────────┘ └────────────┘  │
+│  │  SkillsPanel   │  │  ┌─────────┐ ┌────────────┐  │
+│  │  SettingsPanel │  │  │  Skills │ │  Storage   │  │
+│  │  ToolsPanel    │  │  │ Loader  │ │  (SQLite)  │  │
+│  └────────────────┘  │  └─────────┘ └────────────┘  │
+└──────────────────────┴──────────────────────────────┘
 ```
 
-### 三种 LLM 后端
-
-| 模式 | 说明 | 依赖 |
-|------|------|------|
-| `local`（默认） | 进程内加载模型权重 | torch + transformers |
-| `server` | 连接 OpenAI 兼容服务 | langchain-openai |
-| `mock` | 假模型，用于测试编排 | 仅 langgraph |
-
-### 使用方式
-
-```bash
-# 命令行
-python run_agent.py "写一个快速排序的Python函数"
-python run_agent.py "把 inbox/note.txt 移动到 archive 目录"
-python run_agent.py "写一个冒泡排序函数，然后写一个关于程序员的小故事"
-
-# Streamlit WebUI
-streamlit run agent_web.py
-```
-
-![Agent WebUI](./images/agent_webui.png)
-> Agent Streamlit WebUI 界面截图
-
-> 详细的 Agent 使用说明请参考 [AGENT_README.md](AGENT_README.md)
-
----
-
-## 🔌 模型服务与部署
-
-### OpenAI 兼容 API
-
-```bash
-cd scripts && python serve_openai_api.py
-```
-
-支持 `reasoning_content`、`tool_calls`、`open_thinking` 等字段，可接入 FastGPT、Open-WebUI、Dify 等第三方 UI。
-
-```bash
-# 测试接口
-curl http://localhost:8998/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -d '{"model": "minimind", "messages": [{"role": "user", "content": "你好"}]}'
-```
-
-### 第三方框架
-
-```bash
-# ollama
-ollama run jingyaogong/minimind-3
-
-# vllm
-vllm serve /path/to/model --served-model-name "minimind"
-
-# llama.cpp（需先转换格式）
-python convert_hf_to_gguf.py /path/to/model
+```text
+backend/          FastAPI 后端
+  app/agent/        Agent Loop、上下文管理、子代理、记忆
+  app/api/          REST API + WebSocket 端点
+  app/core/         配置、密钥管理、资源路径
+  app/skills/       技能加载器
+  app/skills_builtin/  内置技能（16 个）
+  app/tools/        工具系统（注册表、插件、交互暂停）
+  app/storage/      SQLite DAO
+  app/desktop/      pywebview 桌面启动器
+  tests/            后端测试套件（71+ 测试）
+frontend/         React + TypeScript + Vite + Zustand + Tailwind
+build/            PyInstaller spec 与构建脚本
+tools/            外部工具插件（可选，构建时复制到 dist）
+personas/         自定义人格片段（可选）
 ```
 
 ---
 
-## 📊 模型参数
+## 🛠️ 工具系统
 
-| 模型 | 参数量 | 词表 | 最大位置 | 层数 | 维度 | 类型 |
-|------|--------|------|----------|------|------|------|
-| TinyMind-Dense | 64M | 6400 | 32768 | 8 | 768 | Dense |
-| TinyMind-MoE | 198M | 6400 | 32768 | 8 | 768 | MoE (4E/top-1) |
+内置工具涵盖文件操作、命令执行、文档处理等领域：
 
-### 模型结构
+| 类别 | 工具 | 说明 |
+|---|---|---|
+| 文件 | `write_file` / `read_file` / `list_dir` | 在项目沙箱内读写文件和目录 |
+| 命令 | `run_command` | 在项目目录内执行命令（PowerShell / CMD） |
+| 文档 | `read_pdf` / `read_docx` / `read_xlsx` | 读取 PDF、Word、Excel 文档 |
+| 交互 | `ask_user_qa` / `ask_user_single_choice` / `ask_user_multi_choice` | Agent 中途暂停等待用户输入 |
+| 代码 | `run_python` | 执行前展示代码并等待确认，确认后运行 Python 子进程 |
+| 知识 | `load_tool_doc` | 按需加载工具文档，节省上下文 Token |
+| 代理 | `dispatch_subagent` | 创建独立上下文的子代理执行子任务 |
 
-![Model Structure](./images/model_structure.png)
-> TinyMind 模型结构示意图（Dense 和 MoE 两种）
+### 扩展工具插件
 
-- 采用预标准化（Pre-Norm）+ RMSNorm
-- 使用 SwiGLU 激活函数
-- 使用 RoPE 旋转位置编码，支持 YaRN 外推
-- `q_heads=8`、`kv_heads=4`、`max_position_embeddings=32768`、`rope_theta=1e6`
+将 Python 文件放入 `tools/` 目录（源码态）或 `dist/SuperAgent/tools/`（打包态）：
 
----
+```python
+# my_plugin.py
+from app.tools.base import Tool, ToolSpec, ToolResult, ToolContext
 
-## 📈 评估结果
+class MyTool(Tool):
+    spec = ToolSpec(
+        name="my_tool",
+        description="A custom tool.",
+        parameters={...},
+    )
 
-> 评测框架使用 [lm-evaluation](https://github.com/EleutherAI/lm-evaluation-harness)。TinyMind 的数据规模远小于其他模型，且训练比例偏向中文，结果仅供参考。
+    async def run(self, args, ctx: ToolContext) -> ToolResult:
+        return ToolResult(True, "result")
 
-> 具体评测数据将在后续版本中补充。
-
----
-
-##  项目结构
-
-```
-TinyMind/
-├── model/                          # 模型定义
-│   ├── model_minimind.py           #   主体模型（Dense + MoE）
-│   ├── model_lora.py               #   LoRA 低秩适配器
-│   ├── tokenizer.json              #   分词器
-│   └── tokenizer_config.json       #   分词器配置
-├── trainer/                        # 训练脚本
-│   ├── train_pretrain.py           #   预训练
-│   ├── train_full_sft.py           #   监督微调
-│   ├── train_lora.py               #   LoRA 微调
-│   ├── train_dpo.py                #   DPO 偏好对齐
-│   ├── train_ppo.py                #   PPO 强化学习
-│   ├── train_grpo.py               #   GRPO / CISPO 强化学习
-│   ├── train_agent.py              #   Agentic RL（多轮 Tool-Use）
-│   ├── train_distillation.py       #   知识蒸馏
-│   ├── train_tokenizer.py          #   分词器训练
-│   ├── rollout_engine.py           #   Rollout 推理引擎
-│   └── trainer_utils.py            #   训练工具集
-├── dataset/                        # 数据集工具
-│   └── lm_dataset.py               #   各阶段数据集类定义
-├── scripts/                        # 工具脚本
-│   ├── serve_openai_api.py         #   OpenAI 兼容 API 服务
-│   ├── web_demo.py                 #   Streamlit 聊天 WebUI
-│   ├── chat_api.py                 #   API 调用示例
-│   ├── convert_model.py            #   模型格式转换
-│   └── eval_toolcall.py            #   Tool Call 测试脚本
-├── minimind_agent/                 # Agent 多智能体系统
-│   ├── agents/                     #   三个专家 Agent
-│   ├── graph/                      #   LangGraph 工作流
-│   ├── config.py                   #   运行配置
-│   ├── provider.py                 #   LLM 后端工厂
-│   └── ...
-├── tests_agent/                    # Agent 测试
-├── eval_llm.py                     # 模型推理评估
-├── run_agent.py                    # Agent 命令行入口
-├── agent_web.py                    # Agent Streamlit WebUI
-└── requirements.txt                # 依赖清单
+def register(registry):
+    registry.register(MyTool())
 ```
 
 ---
 
-## 📝 更新日志
+## 🧩 技能系统
 
-<details>
-<summary><b>🔥 2026-04-01</b></summary>
+技能是存放在 `skills_builtin/` 目录下的独立技能包，每个子文件夹包含一个 `SKILL.md`：
 
-- 发布 TinyMind-Dense (64M) / TinyMind-MoE (198M)
-- 结构对齐 Qwen3 / Qwen3-MoE 生态
-- 新增 Agentic RL 训练脚本，支持多轮 Tool-Use
-- 新增 Agent 多智能体系统（LangGraph 编排）
-- Tokenizer 基于 BPE + ByteLevel 更新
-- 新增 LoRA 权重合并导出流程
+```markdown
+---
+name: brainstorming
+description: Use when starting any creative or design work before implementation.
+---
+# Brainstorming Skill
+...
+```
 
-</details>
+### 渐进式披露
 
-<details>
-<summary><b>2025-10-24</b></summary>
+- **会话开始时**：只注入技能的 `name + description` 元数据索引
+- **命中时**：按需加载技能全文到上下文
+- **目的**：节省 Context Token
 
-- 新增 PPO、GRPO、CISPO 训练算法
-- 新增断点续训功能
-- 新增 YaRN 算法（RoPE 长文本外推）
-- 自适应思考：`<think>` 标签动态控制推理过程
+### 内置技能
 
-</details>
+| 技能 | 说明 |
+|---|---|
+| `brainstorming` | 创意/设计阶段的头脑风暴 |
+| `writing-plans` | 将设计拆分为可执行的小任务 |
+| `test-driven-development` | TDD 工作流（RED → GREEN → REFACTOR） |
+| `subagent-driven-development` | 子代理派发 + 两阶段审查 |
+| `sonetto-bilibili-tools` | B 站视频下载工具文档 |
+| `sonetto-development-tools` | 开发工具文档 |
+| `sonetto-files-tools` | 文件操作工具文档 |
+| `sonetto-memory-tools` | 记忆管理工具文档 |
+| ... | 更多技能见 `backend/app/skills_builtin/` |
 
-<details>
-<summary><b>2025-04-26</b></summary>
+---
 
-- 模型参数命名对齐 Transformers 库
-- 支持 llama.cpp、vllm、ollama 等第三方生态
-- 统一数据集格式为 jsonl
+## ⚙️ 配置说明
 
-</details>
+### LLM Provider
+
+首次使用需在设置中心配置 LLM Provider：
+
+1. 点击顶栏「设置」按钮
+2. 在「模型」标签页添加 Provider（Base URL + API Key + Model）
+3. 支持任意 OpenAI 兼容 API（DeepSeek、OpenRouter、智谱、本地 Ollama 等）
+
+`.env.example` 模板：
+
+```env
+OPENAI_BASE_URL=https://api.deepseek.com/v1
+OPENAI_API_KEY=your-api-key-here
+OPENAI_MODEL=deepseek-chat
+LLM_TEMPERATURE=0.7
+```
+
+### 多 Provider Fallback
+
+设置面板可添加备用 Provider，主 Provider 异常时自动切换。
+
+---
+
+## 🧪 测试
+
+```powershell
+# 后端测试
+.venv\Scripts\python.exe -m pytest backend\tests -q
+
+# 前端类型检查 + 构建
+npm --prefix frontend run build
+
+# 前端单测
+npm --prefix frontend run test
+```
+
+---
+
+## 📦 构建桌面应用
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\build\build.ps1
+```
+
+构建脚本自动完成：
+
+1. 前端构建（Vite）
+2. 后端依赖确认 + PyInstaller 安装
+3. onedir 打包（`build/superagent.spec`）
+4. 内置技能 + 前端产物复制到 `dist/SuperAgent/`
+5. 创建可扩展的 `skills/` 和 `tools/` 目录
+
+输出目录：
+
+```text
+dist/SuperAgent/
+  SuperAgent.exe     # 双击启动
+  _internal/         # PyInstaller 依赖
+  skills/            # 技能目录（用户可扩展）
+  tools/             # 工具插件目录（用户可扩展）
+```
+
+---
+
+## 🔒 安全
+
+- **密钥管理**：API Key 不硬编码、不写日志，通过设置中心保存到本地 Keyring
+- **项目沙箱**：选中项目后，文件操作和命令执行限制在项目目录内，越界路径被拒绝
+- **本地存储**：会话、设置、技能状态等数据本地优先存储，除调用 LLM API 外不上传
+- **Python 执行确认**：`run_python` 执行前展示代码并等待用户确认
+
+---
+
+## 🤝 贡献
+
+欢迎通过 Issues 提交 Bug 报告或功能建议，也欢迎提交 Pull Request。
+
+### 开发环境
+
+```powershell
+# 后端（热重载）
+.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir backend --reload
+
+# 前端（热重载）
+npm --prefix frontend run dev
+
+# 桌面窗口（连接 Vite 开发服务）
+$env:SUPERAGENT_UI_URL = "http://127.0.0.1:5173"
+.venv\Scripts\python.exe -m app.desktop.launch
+```
+
+---
+
+## 📜 开源协议
+
+本项目基于 [MIT License](LICENSE) 开源。
 
 ---
 
 ## 🙏 致谢
 
-本项目基于 [MiniMind](https://github.com/jingyaogong/minimind) 进行改造，在此感谢原作者 Jingyao Gong 的开源贡献。
-
-实现过程中参考了以下优秀的论文与项目：
-
-- [MobileLLM](https://arxiv.org/pdf/2402.14905) — 小模型参数分配研究
-- [DeepSeek-V2](https://arxiv.org/abs/2405.04434) — MoE 架构设计
-- [DeepSeekMath (GRPO)](https://arxiv.org/pdf/2402.03300) — GRPO 算法
-- [CISPO](https://huggingface.co/papers/2506.13585) — Clipped Importance Sampling Policy Optimization
-- [Meta LLaMA](https://github.com/meta-llama/llama3) — 模型结构参考
-- [Karpathy's llama2.c](https://github.com/karpathy/llama2.c) — 极简 LLM 实现思路
-- [baby-llama2-chinese](https://github.com/DLLXW/baby-llama2-chinese) — 小模型中文训练参考
-- [ChatLM-mini-Chinese](https://github.com/charent/ChatLM-mini-Chinese) — 中文小模型参考
-- [TinyLlama](https://github.com/jzhang38/TinyLlama) — 小模型训练参考
+- [Superpowers](https://github.com/jesseVincent/superpowers) — 技能系统与工程方法论的灵感来源
+- [SonettoHere](https://github.com/Miso2233/SonettoHere) — 工具文档懒加载、交互暂停、结构化展示等工程实践
+- [FastAPI](https://fastapi.tiangolo.com/) / [React](https://react.dev/) / [Zustand](https://github.com/pmndrs/zustand) / [pywebview](https://pywebview.flowrl.com/) / [PyInstaller](https://pyinstaller.org/) — 核心技术栈
 
 ---
 
-## ⚖️ 开源协议
+<div align="center">
 
-本项目采用 [Apache License 2.0](LICENSE) 开源协议。
+**如果 SuperAgent 对你有帮助，欢迎给一个 ⭐ Star！**
+
+</div>
